@@ -2,28 +2,62 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
-class User extends Authenticatable
+class User extends Model
 {
-    use Notifiable;
 
+    use Sortable;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email',
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
+     * The attributes that may be sorted by.
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    public $sortable = ['id', 'name', 'created_at', 'updated_at', 'email'];
+
+    /**
+     * The array of aliases that may be used during sorting.
+     *
+     * @var array
+     */
+    public $sortableAs = ['nick_name'];
+
+    public function getDatesAttribute()
+    {
+        return $this->created_at . ' ' . $this->updated_at;
+    }
+
+    public function addressSortable($query, $direction)
+    {
+        return $query->join('user_details', 'users.id', '=', 'user_details.user_id')
+                     ->orderBy('address', $direction)
+                     ->select('users.*');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function detail()
+    {
+        return $this->hasOne(UserDetail::class, 'user_id', 'id');
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function details()
+    {
+        return $this->hasMany(UserDetail::class);
+    }
 }

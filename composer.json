@@ -22,7 +22,8 @@
             "database/factories"
         ],
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Kyslik\\ColumnSortable\\": "packages/column-sortable/src/ColumnSortable/"
         }
     },
     "autoload-dev": {
