@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <div class="container">
-    @sortablelink("id", trans('column-sortable.id'), ['joe' => 'doe', 'jane' => 'doe'])
+    @sortablelink('id', trans('column-sortable.id'), ['joe' => 'doe', 'jane' => 'doe'])
     @sortablelink('name', 'Name')
     @sortablelink('nick_name', 'nick')
     @sortablelink('email')
