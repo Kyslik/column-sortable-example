@@ -1,4 +1,4 @@
-# Example Laravel application using [column-sortable package](https://github.com/Kyslik/column-sortable)
+# Example application using [column-sortable package](https://github.com/Kyslik/column-sortable)
 
 In order to see example on your machine: 
  1. set up .env file and fill out database information.
