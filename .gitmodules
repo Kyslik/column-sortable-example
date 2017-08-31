@@ -1,0 +1,3 @@
+[submodule "packages/column-sortable"]
+	path = packages/column-sortable
+	url = https://github.com/Kyslik/column-sortable
