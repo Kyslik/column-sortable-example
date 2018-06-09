@@ -4,12 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
-use Kyslik\LaravelFilterable\Filterable;
 
 class User extends Model
 {
 
-    use Sortable, Filterable;
+    use Sortable;
 
     /**
      * The attributes that may be sorted by.
