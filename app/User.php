@@ -4,19 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
+use Kyslik\LaravelFilterable\Filterable;
 
 class User extends Model
 {
 
-    use Sortable;
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email',
-    ];
+    use Sortable, Filterable;
 
     /**
      * The attributes that may be sorted by.
@@ -32,17 +25,29 @@ class User extends Model
      */
     public $sortableAs = ['nick_name'];
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'email',
+    ];
+
+
     public function getDatesAttribute()
     {
-        return $this->created_at . ' ' . $this->updated_at;
+        return $this->created_at.' '.$this->updated_at;
     }
+
 
     public function addressSortable($query, $direction)
     {
-        return $query->join('user_details', 'users.id', '=', 'user_details.user_id')
-                     ->orderBy('address', $direction)
+        return $query->join('user_details', 'users.id', '=', 'user_details.user_id')->orderBy('address', $direction)
                      ->select('users.*');
     }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

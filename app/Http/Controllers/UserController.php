@@ -11,10 +11,10 @@ class UserController extends Controller
     {
         try {
             $users = $user->with('detail')->select(['*', 'name as nick_name'])->sortable()->paginate(10);
+
+            return view('user', ['users' => $users]);
         } catch (\Kyslik\ColumnSortable\Exceptions\ColumnSortableException $e) {
             dd($e);
         }
-
-        return view('user', ['users' => $users]);
     }
 }
