@@ -12,4 +12,4 @@ If you want to use submodule version (in packages/column-sortable) us PSR-4 auto
 		 "Kyslik\\ColumnSortable\\": "packages/column-sortable/src/ColumnSortable/"
 	 }
 
-else require `"kyslik/column-sortable: 5.5.*"` and let auto-discover.
+else require `"kyslik/column-sortable: 5.6.*"` and let auto-discover.
