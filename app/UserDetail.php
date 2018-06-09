@@ -27,8 +27,8 @@ class UserDetail extends Model
     /**
      * Get the user that owns the phone.
      */
-    public function user()
+    public function userOwner()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

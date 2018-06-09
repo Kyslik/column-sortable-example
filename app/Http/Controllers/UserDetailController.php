@@ -10,7 +10,7 @@ class UserDetailController extends Controller
     public function index(UserDetail $detail)
     {
         try {
-            $details = $detail->with('user')->sortable(['user.name'])->paginate(10);
+            $details = $detail->with('userOwner')->sortable(['userOwner.name'])->paginate(10);
         } catch (\Kyslik\ColumnSortable\Exceptions\ColumnSortableException $e) {
             dd($e);
         }
