@@ -13,16 +13,25 @@ use Faker\Generator as Faker;
 |
 */
 
+$factory->define(App\Company::class, function (Faker $faker) {
+    return [
+        'name'    => $faker->company,
+        'country' => $faker->country,
+    ];
+});
+
 $factory->define(App\User::class, function (Faker $faker) {
     return [
-        'name'  => $faker->name,
-        'email' => $faker->unique()->safeEmail,
+        'name'       => $faker->name,
+        'email'      => $faker->unique()->safeEmail,
+        'company_id' => resolve(App\Company::class)->inRandomOrder()->first()->id ?? factory(App\Company::class, 25)->create()
+                                                                                                                    ->first()->id,
     ];
 });
 
 $factory->define(App\UserDetail::class, function (Faker $faker) {
     return [
         'phone_number' => $faker->phoneNumber,
-        'address' => $faker->address
+        'address'      => $faker->address,
     ];
 });

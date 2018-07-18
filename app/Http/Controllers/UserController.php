@@ -10,7 +10,7 @@ class UserController extends Controller
     public function index(User $user)
     {
         try {
-            $users = $user->with('detail')->select(['*', 'name as nick_name'])->sortable()->paginate(10);
+            $users = $user->with(['detail', 'company'])->select(['*', 'name as nick_name'])->sortable()->paginate(10);
 
             return view('user', ['users' => $users]);
         } catch (\Kyslik\ColumnSortable\Exceptions\ColumnSortableException $e) {
